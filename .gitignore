@@ -1,3 +1,12 @@
+# Files
+
+.DS_Store
+.DS_Store?
+
+js/config.js
+config.py
+JS/config.js
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
