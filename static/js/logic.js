@@ -1,10 +1,10 @@
-/*Setting the map to center around the middle of the United States and attaching a zoom level of 4 so that the continental United States is showing */
+// Setting the map to center and zoom level of 4
 var myMap = L.map("mapid", {
     center: [37.09, -95.71],
     zoom: 4
 });
 
-
+// Adding map topography layer
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
     maxZoom: 18,
@@ -13,14 +13,14 @@ var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
 
 }).addTo(myMap);
 
-
+// Query URL
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-/* Bringing in the dataset and then placing markers with appropriate size and color related to the magnitude of the quake */
+// Bringing in the data and adding markers
 d3.json(queryUrl).then(function(data) {
     var earthquakes = data.features;
        console.log(earthquakes);
-    /*Sets up our color scheme for earthquakes */
+    // color scheme for earthquakes
     var color = {
         level1: "#98FB98",
         level2: "#136F63",
@@ -30,7 +30,7 @@ d3.json(queryUrl).then(function(data) {
         level6: "#8B0000"
     }
 
-    /* For each of the earthquakes, we are now identifying the lat/long and assessing a severity color to the earthquake */
+    // Loop through earthquake data
 
     for (var i = 0; i < earthquakes.length; i++) {
         var latitude = earthquakes[i].geometry.coordinates[1];
